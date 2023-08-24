@@ -9,14 +9,16 @@ nav_order: 2
 ### [hls.js](https://github.com/video-dev/hls.js)
 
 MSE를 통해, HLS 포맷으로 adaptive HTTP streaming을 제공하는 자바스크립트 라이브러리
+
 <br/>
 
 ### [Media Source Extension(MSE)](https://www.w3.org/TR/media-source-2/)
 
 adpative streaming을 위해 제공되는 브라우저 표준 기술이다.
+
 <br/>
 
-#### adpative streaming (↔︎ Progressive download)
+### adpative streaming (↔︎ Progressive download)
 
 사용자의 네트워크 상태(bandwidth)에 따라 대응하는 해상도의 동영상을 제공하는 기술이다.
 
@@ -28,9 +30,10 @@ adaptive streaming에서는 영상을 다양한 해상도로 인코딩해 segmen
 ### [HLS](https://developer.apple.com/streaming/)
 
 adaptive **HTTP** streaming을 위한 Manifest(Playlist) 포맷 중 하나
+
 <br/>
 
-#### hls.js가 master playlist를 받으면 → MSE에게 지속적으로 segment를 append
+### hls.js가 master playlist를 받으면 → MSE에게 지속적으로 segment를 append
 
 master playlist parsing →
 media playlist parsing →
@@ -38,9 +41,10 @@ segment load (예시에서는 .ts) →
 ts를 MSE가 받을 수 있는 mp4 형식으로 transmux →
 MSE buffer append →
 브라우저에서 영상 렌더링 **< 사용자**
+
 <br/>
 
-#### master playlist (메인 m3u8):
+### master playlist (메인 m3u8):
 
 해상도 별 media playlist들의 경로를 갖고있는 데이터 묶음
 
@@ -60,7 +64,7 @@ url_8/193039199_mp4_h264_aac_fhd_7.m3u8
 
 <br/>
 
-#### media playlist (서브 m3u8):
+### media playlist (서브 m3u8):
 
 segment들의 경로를 갖고 있는 데이터 묶음
 
@@ -86,5 +90,5 @@ url_465/193039199_mp4_h264_aac_hd_7.ts
 
 잘게 쪼개진 segment로 데이터를 제공하기때문에 사용자의 대역폭(bandwidth)에 따라 다음 데이터를 쉽게 교체할 수 있다. 사용자가 컨텐츠를 보는 중에 네트워크 상태가 나빠지면 더 낮은 bandwidth를 가지고 있는 media playlist의 segement들을 요청한다.
 
-📎 [hls.js demo page (playlist examples)](https://hlsjs.video-dev.org/demo/)
+📎 [hls.js demo page (playlist examples)](https://hlsjs.video-dev.org/demo/) <br/>
 📎 [웹 기술로 구현하는 Adaptive HTTP Streaming - NHN Cloud](https://meetup.nhncloud.com/posts/131)
