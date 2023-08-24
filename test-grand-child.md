@@ -1,7 +1,7 @@
 ---
 title: Granchild of Test
-parent: Child of Test
-grand_parent: Test
+parent: M-M-S
+grand_parent: hls.js
 nav_order: 1
 ---
 

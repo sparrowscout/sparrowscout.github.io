@@ -1,10 +1,10 @@
 ---
-title: Child of Test
+title: M-M-S
 parent: hls.js
 has_children: true
 nav_order: 1
 ---
 
-# Child of test
+# Master Playlist - Media Playlist - Segment URL
 
 I am a child page.
