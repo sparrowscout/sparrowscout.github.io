@@ -25,6 +25,7 @@ adpative streaming을 위해 제공되는 브라우저 표준 기술이다.
 기존 Progressive download방식에서는 한가지 해상도를 선택해 처음부터 끝까지 다운로드해서 영상을 제공하다보니 사용자의 네트워크 상황이 바뀌었을 때 지속적으로 낮은 해상도의 영상을 제공하게되거나, 긴 버퍼링을 겪는 문제가 있었다. 이 문제를 해결하기 위해 나온 방식이 adaptive streaming이다.
 
 adaptive streaming에서는 영상을 다양한 해상도로 인코딩해 segment로 잘게 쪼개서 저장해두고 네트워크 통신을 통해 사용자에게 segment단위로 데이터를 전달한다.
+
 <br/>
 
 ### [HLS](https://developer.apple.com/streaming/)
@@ -35,12 +36,12 @@ adaptive **HTTP** streaming을 위한 Manifest(Playlist) 포맷 중 하나
 
 ### hls.js가 master playlist를 받으면 → MSE에게 지속적으로 segment를 append
 
-master playlist parsing →
-media playlist parsing →
-segment load (예시에서는 .ts) →
-ts를 MSE가 받을 수 있는 mp4 형식으로 transmux →
-MSE buffer append →
-브라우저에서 영상 렌더링 **< 사용자**
+master playlist parsing → <br/>
+media playlist parsing → <br/>
+segment load (예시에서는 .ts) → <br/>
+ts를 MSE가 받을 수 있는 mp4 형식으로 transmux → <br/>
+MSE buffer append → <br/>
+브라우저에서 영상 렌더링 **< 사용자** 
 
 <br/>
 
