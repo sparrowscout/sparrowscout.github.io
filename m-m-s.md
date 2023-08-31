@@ -1,7 +1,6 @@
 ---
 title: 1. M-M-S
 parent: hls.js
-has_children: true
 nav_order: 1
 ---
 
