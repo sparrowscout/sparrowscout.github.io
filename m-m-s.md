@@ -1,6 +1,6 @@
 ---
 title: 1. M-M-S
-parent: hls.js
+parent: HLS.js
 nav_order: 1
 ---
 
