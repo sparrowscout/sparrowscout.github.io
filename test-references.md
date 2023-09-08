@@ -8,7 +8,7 @@ nav_order: 2
 
 <hr/>
 
-# test tools and scripts in hls.js
+# test tools and scripts in HLS.js
 
 <br/>
 
