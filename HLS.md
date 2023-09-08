@@ -1,12 +1,12 @@
 ---
-title: hls.js
+title: HLS.js
 has_children: true
 nav_order: 2
 ---
 
-# hls.js
+# HLS.js
 
-### [hls.js](https://github.com/video-dev/hls.js)
+### [HLS.js](https://github.com/video-dev/hls.js)
 
 MSE를 통해, HLS 포맷으로 adaptive HTTP streaming을 제공하는 자바스크립트 라이브러리
 
@@ -34,14 +34,14 @@ adaptive **HTTP** streaming을 위한 Manifest(Playlist) 포맷 중 하나
 
 <br/>
 
-### hls.js가 master playlist를 받으면 → MSE에게 지속적으로 segment를 append
+### HLS.js가 master playlist를 받으면 → MSE에게 지속적으로 segment를 append
 
 master playlist parsing → <br/>
 media playlist parsing → <br/>
 segment load (예시에서는 .ts) → <br/>
 ts를 MSE가 받을 수 있는 mp4 형식으로 transmux → <br/>
 MSE buffer append → <br/>
-브라우저에서 영상 렌더링 **< 사용자** 
+브라우저에서 영상 렌더링 **< 사용자**
 
 <br/>
 
