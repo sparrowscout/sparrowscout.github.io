@@ -1,4 +1,4 @@
-## Welcome to GitHub Pages
+## kim min kyung
 
 🚀 🐼
 
