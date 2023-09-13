@@ -1,6 +1,7 @@
 ---
 title: HLS.js 테스트 환경
 parent: Test
+grand_parent: SDK
 has_children: false
 nav_order: 2
 ---
