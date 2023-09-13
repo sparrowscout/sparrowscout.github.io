@@ -1,0 +1,92 @@
+---
+title: HLS.js 테스트 환경
+parent: Test
+nav_order: 1
+---
+
+# HLS.js 테스트 환경
+
+<hr/>
+
+## Test tools
+
+| role                   | plugin                |
+| :--------------------- | :-------------------- |
+| 테스트러너             | Karma                 |
+| 테스트 프레임워크      | mocha, sinon-chai     |
+| 테스트 리포터(log)     | mocha                 |
+| 테스트 커버리지        | istanbul              |
+| 크로스 브라우징 테스트 | karma-chrome-launcher |
+
+<br/>
+
+# Karma
+
+## configuration
+
+HLS.js 내의 karma configuration <br/>
+
+[Karma configuration 공식문서 ↗︎](http://karma-runner.github.io/6.4/config/configuration-file.html)
+
+```
+📓
+대부분의 framework adapters, reporters, preprocessors, launchers는 plugin으로 제공됩니다.
+```
+
+<br/>
+
+#### `테스트 프레임 워크 지정`
+
+| option         | description                       | value                     | plugin                            |
+| :------------- | :-------------------------------- | :------------------------ | :-------------------------------- |
+| **frameworks** | karma가 사용하고 있는 frame works | `['mocha', 'sinon-chai']` | `karma-mocha`, `karma-sinon-chai` |
+
+<br/>
+
+#### `테스트 대상 파일 지정`
+
+| option      | description              | value                                             | plugin |
+| :---------- | :----------------------- | :------------------------------------------------ | :----- |
+| **files**   | 테스트 진행시킬 파일     | `[{ pattern: 'tests/index.js', watched: false }]` |        |
+| **exclude** | 테스트에서 제외시킬 파일 | `[]`                                              |        |
+
+<br/>
+
+#### `전처리기 설정`
+
+| option                 | description                                                             | value                                                                                 | plugin                      |
+| :--------------------- | :---------------------------------------------------------------------- | :------------------------------------------------------------------------------------ | :-------------------------- |
+| **preprocessors**      | 테스트 전처리기                                                         | `{'./tests/index.js': ['rollup']}` <br>: rollup을 사용해서 karma 테스트 전에 bundling |                             |
+| **rollupPreprocessor** | rollup preprocessor plugin의 설정값임. 기존 rollup bundle 설정과 동일함 |                                                                                       | `karma-rollup-preprocessor` |
+
+<br/>
+
+#### `리포터 설정`
+
+| option               | description                         | value                                                               | plugin                                                                 |
+| :------------------- | :---------------------------------- | :------------------------------------------------------------------ | :--------------------------------------------------------------------- |
+| **reporters**        | 리포터 설정                         | `['mocha']` \| `['mocha','coverage']`                               | `karma-mocha-reporter`,                                                |
+| **colors**           | 리포터(로그) 출력 시 색상 출력 여부 | `true`                                                              |                                                                        |
+| **coverageReporter** | 커버리지 리포터 설정                | `{reporters: []}` \| `{reporters: [{ type: 'html', subdir: '.' }]}` | ` rollup-plugin-istanbul`<br/>: (rollup 전처리기와 함께 사용하고 있음) |
+
+```
+📓
+Coverage
+
+테스트 코드가 프로덕션 코드를 얼마나 실행했는지를 백분율로 나타내는 지표이다.
+즉, 테스트 코드가 실제로 프로덕션 코드를 얼마나 몇 퍼센트 검증하고 있는지를 나타낸다.
+HLS.js에서는 istanbul plugin을 활용해 HTML 포맷으로 출력하고 있다.
+
+테스트 실행 시 coverage 디렉토리에 html 파일이 생성된다. 폴더 구조는 프로젝트 폴더 구조와 같다.
+```
+
+<br/>
+
+#### `테스트 브라우저 설정`
+
+| option          | description                                                                                                                                                 | value                | plugin                  |
+| :-------------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------- | :------------------- | :---------------------- |
+| **port**        | 웹 서버 포트 (Will be used as the port when launching browsers)                                                                                             | `9876`               |                         |
+| **browers**     | 테스트가 실행될 브라우저, karma가 실행되면 웹서버 포트에서 실행되고, karma가 종료되면 브라우저도 종료됨. (A list of browsers to launch and capture)         | `['ChromeHeadless']` | `karma-chrome-launcher` |
+| **singleRun**   | true일 시, karma는 모든 브라우저를 캡처, 모든 테스트를 실행시키고 모든 테스트를 패스하면 0, 하나라도 실패 시 1로 exit 됩니다. (Continuous Integration mode) | `true`               |                         |
+| **concurrency** | 동시에 실행시킬 브라우저의 수                                                                                                                               | `1`                  |                         |
