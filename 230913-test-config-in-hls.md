@@ -1,7 +1,8 @@
 ---
 title: HLS.js 테스트 환경
 parent: Test
-nav_order: 1
+has_children: false
+nav_order: 2
 ---
 
 # HLS.js 테스트 환경
