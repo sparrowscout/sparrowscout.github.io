@@ -12,7 +12,7 @@ nav_order: 1
 
 정리되지 않은 글들은 저의 [velog](https://velog.io/@sparrowscout)에 모아두고 있습니다.
 
-# 목차 contents
+# contents
 
 ### [HLS.js](https://sparrowscout.github.io/HLS.html)
 
