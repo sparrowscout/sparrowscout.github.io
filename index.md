@@ -4,6 +4,8 @@ has_children: false
 nav_order: 1
 ---
 
+<img src="./img/favicon.png" width="100"/>
+
 # Documentation for FrontEnd Developer(me)
 
 공부한 내용을 정리합니다.<br/>
