@@ -6,13 +6,17 @@ nav_order: 1
 
 <img src="./img/favicon.png" width="100"/>
 
+# Min Kyung (me)
+
+프론트엔드 개발자입니다.
+
 # Documentation for me
 
 공부한 내용을 문서 형태로 정리합니다.<br/>
 
 정리되지 않은 글들은 저의 [velog](https://velog.io/@sparrowscout)에 모아두고 있습니다.
 
-# contents
+# Documents Contents
 
 ### [HLS.js](https://sparrowscout.github.io/HLS.html)
 
