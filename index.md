@@ -4,7 +4,7 @@ has_children: false
 nav_order: 1
 ---
 
-<img src="./img/favicon.png" width="100"/>
+<a href="mailto:sparrowscout.0000@gmail.com"><img src="./img/favicon.png" width="100" alt="alien coffee image" title="coffee-chat me (click me)"/></a>
 
 # Min Kyung (me)
 
