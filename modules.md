@@ -5,13 +5,11 @@ grand_parent: SDK
 nav_order: 1
 ---
 
+> [📎 You don't Know JS module](https://ui.toast.com/weekly-pick/ko_20190418), <br/> [📎 JavaScript 표준을 위한 움직임: CommonJS와 AMD](https://d2.naver.com/helloworld/12864) 글을 요약 • 정리한 글입니다.
+
 # Modules
 
 자바스크립트의 모듈
-
-<br/>
-
-## TL;DR
 
 <br/>
 
@@ -52,6 +50,3 @@ The UMD pattern typically attempts to offer compatibility with the most popular 
 ## ES Module
 
 ECMAScript 명세에 수록된 모듈 개념 (ES6)
-
-[📎 You don't Know JS module](https://ui.toast.com/weekly-pick/ko_20190418)
-[📎 JavaScript 표준을 위한 움직임: CommonJS와 AMD](https://d2.naver.com/helloworld/12864)
