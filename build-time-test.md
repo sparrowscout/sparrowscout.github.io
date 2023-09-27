@@ -63,27 +63,45 @@ SDK 패키징을 위해 번들러 툴과 컴파일 툴을 비교했습니다. �
 
 ### ESBuild
 
-|          |                 1                 |                  2                  |                 3                  | 4                                  | 5                                | average    |
-| -------- | :-------------------------------: | :---------------------------------: | :--------------------------------: | ---------------------------------- | -------------------------------- | ---------- |
-| cjs(umd) | <span style="color:#651fff" > 6ms |  <span style="color:#651fff" > 5ms  |                5ms                 | 10ms                               | <span style="color:#651fff" >6ms | **5.67ms** |
-| js(esm)  | <span style="color:#651fff" > 7ms |                 6ms                 | <span style="color:#651fff" > 7ms  | 13ms                               | <span style="color:#651fff" >9ms | **7.67ms** |
-| total    |               2.24s               | <span style="color:#651fff" > 2.27s | <span style="color:#651fff" >2.29s | <span style="color:#651fff" >2.50s | 2.76s                            | **2.35s**  |
+|           | average                             |
+| --------- | ----------------------------------- |
+| cjs (umd) | <span style="color:#00c853"> 5.67ms |
+| js (esm)  | <span style="color:#00c853"> 7.67ms |
+| total     | <span style="color:#00c853">2.35s   |
+
+|          |   1   |   2   |   3   |   4   |   5   |
+| -------- | :---: | :---: | :---: | :---: | :---: |
+| cjs(umd) |  6ms  |  5ms  |  5ms  | 10ms  |  6ms  |
+| js(esm)  |  7ms  |  6ms  |  7ms  | 13ms  |  9ms  |
+| total    | 2.24s | 2.27s | 2.29s | 2.50s | 2.76s |
 
 ### RollUp
 
-|          |                 1                  |                  2                  |                  3                  | 4                                   | 5                                   | average     |
-| -------- | :--------------------------------: | :---------------------------------: | :---------------------------------: | ----------------------------------- | ----------------------------------- | ----------- |
-| cjs(umd) | <span style="color:#651fff" >710ms | <span style="color:#651fff" >709ms  |                704ms                | <span style="color:#651fff" > 708ms | 716ms                               | **709ms**   |
-| js(esm)  | <span style="color:#651fff" >431ms |                430ms                | <span style="color:#651fff" >434ms  | 438ms                               | <span style="color:#651fff" > 433ms | **432.6ms** |
-| total    |               3.46s                | <span style="color:#651fff" > 3.48s | <span style="color:#651fff" > 3.49s | <span style="color:#651fff" > 3.50s | 3.53s                               | **3.49s**   |
+|           | average                              |
+| --------- | ------------------------------------ |
+| cjs (umd) | <span style="color:#00c853"> 709ms   |
+| js (esm)  | <span style="color:#00c853"> 432.6ms |
+| total     | <span style="color:#00c853">3.49s    |
+
+|          |   1   |   2   |   3   |   4   |   5   |
+| -------- | :---: | :---: | :---: | :---: | :---: |
+| cjs(umd) | 710ms | 709ms | 704ms | 708ms | 716ms |
+| js(esm)  | 431ms | 430ms | 434ms | 438ms | 433ms |
+| total    | 3.46s | 3.48s | 3.49s | 3.50s | 3.53s |
 
 ### WebPack
 
-|          |                  1                  |                  2                  |                  3                  | 4                                  | 5     | average   |
-| -------- | :---------------------------------: | :---------------------------------: | :---------------------------------: | ---------------------------------- | ----- | --------- |
-| cjs(umd) | <span style="color:#651fff" > 415ms |                404ms                | <span style="color:#651fff" > 410ms | <span style="color:#651fff" >411ms | 431ms | **412ms** |
-| js(esm)  |                379ms                | <span style="color:#651fff" > 384ms | <span style="color:#651fff" > 391ms | <span style="color:#651fff" >380ms | 409ms | **395ms** |
-| total    |                2.97s                | <span style="color:#651fff" >3.02s  | <span style="color:#651fff" > 3.02s | <span style="color:#651fff" >3.17s | 3.86s | **3.07s** |
+|           | average                            |
+| --------- | ---------------------------------- |
+| cjs (umd) | <span style="color:#00c853"> 412ms |
+| js (esm)  | <span style="color:#00c853"> 395ms |
+| total     | <span style="color:#00c853">3.07s  |
+
+|          |   1   |   2   |   3   |   4   |   5   |
+| -------- | :---: | :---: | :---: | :---: | :---: |
+| cjs(umd) | 415ms | 404ms | 410ms | 411ms | 431ms |
+| js(esm)  | 379ms | 384ms | 391ms | 380ms | 409ms |
+| total    | 2.97s | 3.02s | 3.02s | 3.17s | 3.86s |
 
 <br/>
 
@@ -120,39 +138,63 @@ RollUp이 TypeScript transpile plugin과 minify plugin을 두개 다 사용하�
 
 ### 1. typescript O, minify O (기존 configuration)
 
-|       | 1     | 2     | 3     | 4     | 5     | average |
-| ----- | ----- | ----- | ----- | ----- | ----- | ------- |
-| cjs   | 710ms | 709ms | 704ms | 708ms | 716ms | 709ms   |
-| js    | 431ms | 430ms | 434ms | 438ms | 433ms | 432.6ms |
-| total | 3.45s | 3.48s | 3.49s | 3.50s | 3.53s | 3.49s   |
+|       | average                              |
+| ----- | ------------------------------------ |
+| cjs   | <span style="color:#00c853"> 709ms   |
+| js    | <span style="color:#00c853"> 432.6ms |
+| total | <span style="color:#00c853">3.49s    |
+
+|       | 1     | 2     | 3     | 4     | 5     |
+| ----- | ----- | ----- | ----- | ----- | ----- |
+| cjs   | 710ms | 709ms | 704ms | 708ms | 716ms |
+| js    | 431ms | 430ms | 434ms | 438ms | 433ms |
+| total | 3.45s | 3.48s | 3.49s | 3.50s | 3.53s |
 
 ### 2. typescript X, minify X
 
+|       | average                             |
+| ----- | ----------------------------------- |
+| cjs   | <span style="color:#00c853"> 21.3ms |
+| js    | <span style="color:#00c853"> 4ms    |
+| total | <span style="color:#00c853">0.47s   |
+
 → 다른 plugin을 사용하지 않고, RollUp의 내장 config만을 사용해 `JavaScript` → `JavaScript` bundle만 실행했을 때 훨씬 빠른 결과 나옴
 
-|       | 1     | 2     | 3     | 4     | 5     | average                             |
-| ----- | ----- | ----- | ----- | ----- | ----- | ----------------------------------- |
-| cjs   | 22ms  | 22ms  | 21ms  | 21ms  | 21ms  | <span style="color:#00c853"> 21.3ms |
-| js    | 4ms   | 4ms   | 4ms   | 4ms   | 5ms   | <span style="color:#00c853"> 4ms    |
-| total | 0.48s | 0.47s | 0.47s | 0.47s | 0.47s | <span style="color:#00c853">0.47s   |
+|       | 1     | 2     | 3     | 4     | 5     |
+| ----- | ----- | ----- | ----- | ----- | ----- |
+| cjs   | 22ms  | 22ms  | 21ms  | 21ms  | 21ms  |
+| js    | 4ms   | 4ms   | 4ms   | 4ms   | 5ms   |
+| total | 0.48s | 0.47s | 0.47s | 0.47s | 0.47s |
 
 ### 3. typescript X, minify O
 
-|       | 1     | 2     | 3     | 4     | 5     | average                            |
-| ----- | ----- | ----- | ----- | ----- | ----- | ---------------------------------- |
-| cjs   | 142ms | 141ms | 141ms | 141ms | 141ms | <span style="color:#00c853"> 141ms |
-| js    | 112ms | 112ms | 112ms | 111ms | 113ms | <span style="color:#00c853">112ms  |
-| total | 0.75s | 0.75s | 0.75s | 0.75s | 0.84s | <span style="color:#00c853"> 0.75s |
+|       | average                            |
+| ----- | ---------------------------------- |
+| cjs   | <span style="color:#00c853"> 141ms |
+| js    | <span style="color:#00c853">112ms  |
+| total | <span style="color:#00c853"> 0.75s |
+
+|       | 1     | 2     | 3     | 4     | 5     |
+| ----- | ----- | ----- | ----- | ----- | ----- |
+| cjs   | 142ms | 141ms | 141ms | 141ms | 141ms |
+| js    | 112ms | 112ms | 112ms | 111ms | 113ms |
+| total | 0.75s | 0.75s | 0.75s | 0.75s | 0.84s |
 
 ### 4. typescript O, minify X
 
+|       | average                              |
+| ----- | ------------------------------------ |
+| cjs   | <span style="color:#00c853"> 592ms   |
+| js    | <span style="color:#00c853">325.67ms |
+| total | <span style="color:#00c853"> 1.66s   |
+
 → typescript plugin을 사용하지 않고, minify 도구인 terser plugin을 사용한 3번 케이스와 비교해봤을 때, typescript plugin의 transpile 과정이 가장 많은 시간을 소비하고 있음
 
-|       | 1     | 2     | 3     | 4     | 5     | average                               |
-| ----- | ----- | ----- | ----- | ----- | ----- | ------------------------------------- |
-| cjs   | 596ms | 590ms | 585ms | 612ms | 592ms | <span style="color:#00c853"> 592ms    |
-| js    | 337ms | 319ms | 327ms | 321ms | 329ms | <span style="color:#00c853"> 325.67ms |
-| total | 1.68s | 1.65s | 1.65s | 1.67s | 1.66s | <span style="color:#00c853"> 1.66s    |
+|       | 1     | 2     | 3     | 4     | 5     |
+| ----- | ----- | ----- | ----- | ----- | ----- |
+| cjs   | 596ms | 590ms | 585ms | 612ms | 592ms |
+| js    | 337ms | 319ms | 327ms | 321ms | 329ms |
+| total | 1.68s | 1.65s | 1.65s | 1.67s | 1.66s |
 
 <br/>
 
@@ -177,19 +219,31 @@ plugin이랑 tsc를 하나씩 빼 봤을 때 `@rollup/plugin-typescript` 과정�
 
 ### 1. babel O, minify X tsc O
 
-|       | 1     | 2     | 3     | 4     | 5     | average  |
-| ----- | ----- | ----- | ----- | ----- | ----- | -------- |
-| cjs   | 179ms | 180ms | 177ms | 180ms | 181ms | 179.67ms |
-| js    | 17ms  | 17ms  | 18ms  | 18ms  | 17ms  | 52ms     |
-| total | 2.56s | 2.69s | 2.31s | 2.32s | 2.33s | 2.40s    |
+|       | average                               |
+| ----- | ------------------------------------- |
+| cjs   | <span style="color:#00c853"> 179.67ms |
+| js    | <span style="color:#00c853">52ms      |
+| total | <span style="color:#00c853"> 2.40s    |
+
+|       | 1     | 2     | 3     | 4     | 5     |
+| ----- | ----- | ----- | ----- | ----- | ----- |
+| cjs   | 179ms | 180ms | 177ms | 180ms | 181ms |
+| js    | 17ms  | 17ms  | 18ms  | 18ms  | 17ms  |
+| total | 2.56s | 2.69s | 2.31s | 2.32s | 2.33s |
 
 ### 1. babel O, minify O tsc O
 
-|       | 1     | 2     | 3     | 4     | 5     | average  |
-| ----- | ----- | ----- | ----- | ----- | ----- | -------- |
-| cjs   | 287ms | 274ms | 274ms | 274ms | 275ms | 274.3ms  |
-| js    | 101ms | 100ms | 101ms | 99ms  | 101ms | 100.67ms |
-| total | 2.59s | 2.52s | 2.52s | 2.51s | 2.68s | 2.54s    |
+|       | average                              |
+| ----- | ------------------------------------ |
+| cjs   | <span style="color:#00c853"> 274.3ms |
+| js    | <span style="color:#00c853">100.67ms |
+| total | <span style="color:#00c853"> 2.54s   |
+
+|       | 1     | 2     | 3     | 4     | 5     |
+| ----- | ----- | ----- | ----- | ----- | ----- |
+| cjs   | 287ms | 274ms | 274ms | 274ms | 275ms |
+| js    | 101ms | 100ms | 101ms | 99ms  | 101ms |
+| total | 2.59s | 2.52s | 2.52s | 2.51s | 2.68s |
 
 ### → Babel을 사용하니까 ts-loader를 사용한 WebPack보다 빠르게 나왔다.
 
@@ -207,11 +261,17 @@ plugin이랑 tsc를 하나씩 빼 봤을 때 `@rollup/plugin-typescript` 과정�
 
 ```
 
-|       | 1      | 2      | 3      | 4      | 5      | average |
-| ----- | ------ | ------ | ------ | ------ | ------ | ------- |
-| cjs   | 456 ms | 508 ms | 443 ms | 469 ms | 443 ms | 456ms   |
-| js    | 435 ms | 482 ms | 423 ms | 448 ms | 425 ms | 436ms   |
-| total | 2.83s  | 3.09s  | 3.28s  | 3.00s  | 2.83s  | 2.97s   |
+|       | average                            |
+| ----- | ---------------------------------- |
+| cjs   | <span style="color:#00c853"> 456ms |
+| js    | <span style="color:#00c853">436ms  |
+| total | <span style="color:#00c853"> 2.97s |
+
+|       | 1      | 2      | 3      | 4      | 5      |
+| ----- | ------ | ------ | ------ | ------ | ------ |
+| cjs   | 456 ms | 508 ms | 443 ms | 469 ms | 443 ms |
+| js    | 435 ms | 482 ms | 423 ms | 448 ms | 425 ms |
+| total | 2.83s  | 3.09s  | 3.28s  | 3.00s  | 2.83s  |
 
 babel-loader를 사용한 WebPack보다 빨랐다! <br/>
 
