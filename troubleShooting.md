@@ -6,6 +6,4 @@ has_children: true
 
 # TroubleShootings
 
-## 1.
-
-> No inputs were found in config file ’/Users/4dreplay/Documents/projects/packaging/dummy-esbuild/tsconfig.json’. Specified ’include’ paths were ’["**/*"]’ and ’exclude’ paths were ’["dist"]’.ts
+마주했던 문제와 풀어나간 방법, 실수를 줄이는 법 등에 대해서 작성했습니다.

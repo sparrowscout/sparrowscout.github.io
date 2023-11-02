@@ -28,4 +28,4 @@ nav_order: 1
 
 ### [TroubleShooting](https://sparrowscout.github.io/troubleShooting.html)
 
-마주했던 문제와 풀어나간 방법에 대해서 정리합니다.
+마주했던 문제와 풀어나간 방법, 실수를 줄이는 법 등에 대해서 작성했습니다.
