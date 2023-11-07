@@ -1,6 +1,5 @@
 ---
 title: Build Time Test
-parent: SDK
 nav_order: 1
 ---
 
