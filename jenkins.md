@@ -1,7 +1,7 @@
 ---
 title: Jenkins
-has_children: true
-nav_order: 1
+has_children: false
+nav_order: 2
 ---
 
 ## Jenkins?

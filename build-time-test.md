@@ -1,6 +1,7 @@
 ---
 title: Build Time Test
-nav_order: 1
+has_children: false
+nav_order: 2
 ---
 
 # Build Time Test

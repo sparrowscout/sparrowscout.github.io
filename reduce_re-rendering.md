@@ -1,6 +1,6 @@
 ---
 title: 리렌더링 줄이기
-nav_order: 2
+nav_order: 1
 parent: TroubleShootings
 ---
 
