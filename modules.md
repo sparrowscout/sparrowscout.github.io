@@ -1,7 +1,6 @@
 ---
 title: Modules
-parent: Packaging
-grand_parent: SDK
+parent: SDK
 nav_order: 1
 ---
 
