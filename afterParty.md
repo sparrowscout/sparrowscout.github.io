@@ -1,5 +1,5 @@
 ---
-title: [강연] 정보 접근성의 중요성과 필요성
+title: 강연_정보 접근성의 중요성과 필요성
 parent: UI UX
 nav_order: 1
 ---
