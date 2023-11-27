@@ -1,5 +1,7 @@
 ---
 title: 환경변수 파일 설정하기
+has_children: false
+nav_order: 3
 ---
 
 # 환경변수 파일 설정하기

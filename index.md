@@ -22,6 +22,10 @@ nav_order: 1
 
 오픈소스 라이브러리 HLS.js에 대해서 공부한 내용을 정리합니다.
 
+### [UI/UX](https://sparrowscout.github.io/UIUX.html)
+
+UI/UX에 대해서 공부한 내용을 정리합니다.
+
 ### [SDK](https://sparrowscout.github.io/sdk.html)
 
 자바스크립트 패키지에 대해서 공부한 내용을 정리합니다.
