@@ -6,11 +6,11 @@ nav_order: 1
 
 > [📎 You don't Know JS module](https://ui.toast.com/weekly-pick/ko_20190418), <br/> [📎 JavaScript 표준을 위한 움직임: CommonJS와 AMD](https://d2.naver.com/helloworld/12864) 글을 요약 • 정리한 글입니다.
 
+<br/>
+
 # Modules
 
 자바스크립트의 모듈
-
-<br/>
 
 # [CommonJS ↗︎](https://nodejs.org/api/modules.html)
 
