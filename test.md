@@ -1,7 +1,6 @@
 ---
 title: Test
 parent: SDK
-has_children: true
 nav_order: 1
 ---
 

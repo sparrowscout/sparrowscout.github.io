@@ -9,8 +9,9 @@ back_to_top_text: "Back to top"
 
 favicon_ico: "/img/favicon.ico"
 
-last_edit_timestamp: true # show or hide edit time - page must have `last_modified_date` defined in the frontmatter
-last_edit_time_format: "%b %e %Y at %I:%M %p" # uses ruby's time format: https://ruby-doc.org/stdlib-2.7.0/libdoc/time/rdoc/Time.html
+
+last-modified-at:
+​    date-format: '%Y/%m/%d' #2016/03/23.
 
 author:
   name: "MINKY0NG"
@@ -23,3 +24,4 @@ plugins:
   - jekyll-seo-tag
   - jekyll-github-metadata
   - jekyll-include-cache
+  - jekyll-last-modified-at
