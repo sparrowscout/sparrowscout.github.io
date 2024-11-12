@@ -1,0 +1,46 @@
+---
+title: BabylonJS
+has_children: true
+nav_order: 2
+---
+
+<br/>
+
+# babylon.js
+
+<br/>
+
+## 1. Animation과 Animatable의 차이
+
+1. Animation
+
+   _Class used to store any kind of animation_
+
+   Animation 객체는 애니메이션 데이터만을 정의하는 객체입니다. 위치, 회전, 크기 등 특정 속성에 대해 프레임별로 값을 정의하여 시간 경과에 따라 값을 변경하는 방법을 설정합니다. 즉, 애니메이션 동작의 청사진이라고 볼 수 있습니다.
+
+   ```javascript
+   new Animation(name, targetProperty, framePerSecond, dataType, loopMode?, enableBlending?): Animation
+   ```
+
+   [📎 babylon.js 공식문서 : Class Animation](https://doc.babylonjs.com/typedoc/classes/BABYLON.Animation)
+
+   <br/>
+
+2. Animatable
+
+   _Class used to store an actual running animation_
+
+   Animatable 객체는 Animation이 실제로 실행될 때 생기는 인스턴스로, 실행 상태를 관리합니다. Babylon.js는 scene.beginAnimation을 호출하면 Animatable 객체를 생성합니다. 이 객체는 애니메이션의 시작, 중지, 재생 상태 등을 제어하며, 특정 대상(예: 메쉬, 카메라 등)에 대한 애니메이션을 제어하고 관리합니다.
+
+   Animatable은 애니메이션이 대상에 적용된 상태를 의미하며, 실행 도중 중지할 수도 있고, 실행이 끝나면 메모리에서 사라질 수 있습니다.
+
+   ```javascript
+   new Animatable(scene, target, fromFrame?, toFrame?, loopAnimation?, speedRatio?, onAnimationEnd?, animations?, onAnimationLoop?, isAdditive?, playOrder?): Animatable
+   ```
+
+   ```javascript
+   const animatable = scene.beginAnimation(mesh, 0, 100, true);
+   animatable.stop(); // 실행 중인 애니메이션 중지
+   ```
+
+   [📎 babylon.js 공식문서 : Class Animatable](https://doc.babylonjs.com/typedoc/classes/BABYLON.Animatable)
