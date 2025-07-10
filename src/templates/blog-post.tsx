@@ -1,10 +1,14 @@
 import * as React from 'react';
 import { graphql } from 'gatsby';
+import Layout from '../layout';
+import styled from 'styled-components';
+import LeftArrow from '../assets/icons/left-arrow.svg';
+import { navigate } from 'gatsby';
 
 interface BlogPostProps {
   data: {
     mdx: {
-      body: string;
+      body: any;
       frontmatter: {
         title: string;
         date: string;
@@ -16,12 +20,28 @@ interface BlogPostProps {
 
 export default function BlogPost({ data: { mdx }, children }: BlogPostProps) {
   const { frontmatter, body } = mdx;
+
+  const onClickBack = () => {
+    navigate(-1);
+  };
+
   return (
-    <section>
-      <h1 className="text-2xl font-bold mb-2">{frontmatter.title}</h1>
-      <p className="text-sm text-gray-500">{frontmatter.date}</p>
-      <article className="prose max-w-none">{body}</article>
-    </section>
+    <Layout>
+      <DocumentContainer>
+        <BackIconContainer onClick={onClickBack}>
+          <LeftArrow />
+        </BackIconContainer>
+
+        <Post>
+          <h1>{frontmatter.title}</h1>
+          <p>{frontmatter.date}</p>
+          <ArticleContainer>
+            <Divider />
+            <article>{children}</article>
+          </ArticleContainer>
+        </Post>
+      </DocumentContainer>
+    </Layout>
   );
 }
 export const query = graphql`
@@ -29,9 +49,44 @@ export const query = graphql`
     mdx(fields: { slug: { eq: $slug } }) {
       frontmatter {
         title
-        date(formatString: "YYYY-MM-DD")
+        date(formatString: "YYYY/MM/DD")
       }
       body
     }
+  }
+`;
+
+const DocumentContainer = styled.section`
+  padding-top: 16px;
+`;
+
+const Post = styled.div`
+  padding: 20px;
+  background-color: #fff;
+  filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.25));
+`;
+
+const ArticleContainer = styled.div`
+  margin-top: 20px;
+`;
+
+const Divider = styled.hr`
+  border: none;
+  border-top: 1px solid #ccc;
+  margin: 20px 0;
+`;
+
+const BackIconContainer = styled.div`
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  margin-bottom: 12px;
+
+  & > svg {
+    width: 100%;
+    height: 100%;
   }
 `;

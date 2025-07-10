@@ -1,19 +1,18 @@
 import * as React from 'react';
 import { graphql, Link, type HeadFC, type PageProps } from 'gatsby';
 import { DataProps } from '../types/blogTypes';
+import CardStack from '../components/CardStack';
+import styled from 'styled-components';
+import Layout from '../layout';
 
 const IndexPage = ({ data }: PageProps<DataProps>) => {
+  console.log(data);
   return (
-    <section>
-      {data.allMdx.nodes.map((post, idx) => (
-        <li key={idx} className="border p-4 rounded hover:shadow-md transition">
-          <Link to={`/blog/${post.fields.slug}`}>
-            <h2 className="text-xl font-semibold">{post.frontmatter.title}</h2>
-            <p className="text-sm text-gray-600">{post.frontmatter.date}</p>
-          </Link>
-        </li>
-      ))}
-    </section>
+    <Layout>
+      <div>
+        <CardStack data={data} />
+      </div>
+    </Layout>
   );
 };
 
@@ -31,6 +30,7 @@ export const query = graphql`
         }
         fields {
           slug
+          category
         }
       }
     }

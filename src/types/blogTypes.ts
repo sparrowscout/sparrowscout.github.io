@@ -6,6 +6,7 @@ export type BlogPost = {
   };
   fields: {
     slug: string;
+    category: string;
   };
 };
 
