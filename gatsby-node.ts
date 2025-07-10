@@ -17,6 +17,10 @@ export const createPages: GatsbyNode['createPages'] = async ({ actions, graphql 
           }
           fields {
             slug
+            category
+          }
+          internal {
+            contentFilePath
           }
         }
       }
@@ -30,13 +34,15 @@ export const createPages: GatsbyNode['createPages'] = async ({ actions, graphql 
   const posts = (result as any).data.allMdx.nodes;
 
   console.log('Posts:', posts);
+  const postTemplate = path.resolve(`./src/templates/blog-post.tsx`);
 
   posts.forEach((post: any) => {
     createPage({
       path: `/blog/${post.fields.slug}`,
-      component: path.resolve(`./src/templates/blog-post.tsx`),
+      component: `${postTemplate}?__contentFilePath=${post.internal.contentFilePath}`,
       context: {
         slug: post.fields.slug,
+        category: post.fields.category,
       },
     });
   });
@@ -51,10 +57,19 @@ export const onCreateNode: GatsbyNode['onCreateNode'] = ({ node, actions, getNod
     const value = createFilePath({ node, getNode, basePath: 'content/blog', trailingSlash: false });
     const cleanSlug = value.replace(/^\/|\/$/g, '');
 
+    const parent = getNode(node.parent as string);
+    const relativeDirectory = (parent as any).relativeDirectory;
+
     createNodeField({
       name: 'slug',
       node,
       value: cleanSlug,
+    });
+
+    createNodeField({
+      name: 'category',
+      node,
+      value: relativeDirectory,
     });
   }
 };
