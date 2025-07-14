@@ -25,11 +25,12 @@ export default function CardStack({ data }: { data: DataProps }) {
   const sortedPosts = [...data.allMdx.nodes].sort((a, b) =>
     a.fields.category.localeCompare(b.fields.category)
   );
+
+  let lastCategory = '';
+
   return (
     <Container>
       {sortedPosts.map((post, idx) => {
-        let lastCategory = '';
-
         const categoryChanged = post.fields.category !== lastCategory;
 
         console.log(categoryChanged);
@@ -40,11 +41,10 @@ export default function CardStack({ data }: { data: DataProps }) {
               <CategoryCard>
                 <div
                   style={{
-                    position: 'relative',
+                    position: 'absolute',
                     display: 'inline-block',
                     padding: '4px 30px', // 텍스트 padding 조절
-                    zIndex: 1,
-                    top: '1px', // 텍스트 위치 조정
+                    top: '-43px', // 텍스트 위치 조정
                   }}
                 >
                   <div
@@ -76,15 +76,15 @@ export default function CardStack({ data }: { data: DataProps }) {
               <Card
                 className="stack-card"
                 key={idx}
-                initial={{ y: idx * 5, rotate: 0 + idx * getRandomNumber2(1, -1) }}
-                whileHover={{ y: idx * 5 - 30 }}
+                initial={{ rotate: getRandomNumber2(3, -3) }}
+                whileHover={{ y: idx - 50 }}
                 transition={{ type: 'spring', stiffness: 200, mass: 0.5 }}
                 style={{ cursor: 'pointer' }}
               >
                 <CardContent>
                   <CardTag
                     $bgColor={colorArray[getRandomNumber(colorArray.length)]}
-                    $yPosition={getRandomNumber(50, 0)}
+                    $yPosition={getRandomNumber(50, 20)}
                     $rotation={getRandomNumber(10, -10)}
                   >
                     <CardTitle>{post.frontmatter.title}</CardTitle>
@@ -122,26 +122,27 @@ const Container = styled.div`
 const Card = styled(motion.div)`
   position: relative;
   margin-top: -170px;
+  cursor: pointer;
 `;
 
 const CategoryCard = styled.div`
   position: relative;
-  margin-top: -170px;
   pointer-events: none;
+  cursor: default;
+  margin-top: -160px;
 `;
 
 const CardTag = styled.div<{ $bgColor: string; $yPosition: number; $rotation: number }>`
   position: absolute;
   left: ${(props) => `calc(${props.$yPosition}%)`};
-  height: 32px;
+  /* height: 32px; */
   top: -12px;
   rotate: -10deg;
   min-width: 100px;
-  max-width: 100%;
   text-align: center;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
 
-  padding: 6px 12px;
+  padding: 16px;
   background-color: ${(props) => props.$bgColor};
   rotate: ${(props) => props.$rotation}deg;
   display: flex;
@@ -222,16 +223,21 @@ const CategoryTag = styled.div`
 
 const NameSticker = styled.div`
   background-color: #fffefb;
-  min-width: 100px;
+  min-width: 80px;
   max-width: 250px;
   position: relative;
+
+  color: #5d5d5d;
 
   align-items: center;
   font-weight: bold;
   border-radius: 8px;
-  outline: 2px solid black;
-  padding: 12px;
+  outline: 2px solid #5d5d5d;
+  padding: 8px;
   text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   margin: 0px 24px;
   outline-offset: -5px; /* 음수면 안쪽으로 들어감 */
 
