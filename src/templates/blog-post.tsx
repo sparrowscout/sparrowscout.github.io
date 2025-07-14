@@ -12,7 +12,9 @@ interface BlogPostProps {
       frontmatter: {
         title: string;
         date: string;
+        excerpt?: string;
       };
+      excerpt?: string;
     };
   };
   children: React.ReactNode;
@@ -53,7 +55,9 @@ export const query = graphql`
       frontmatter {
         title
         date(formatString: "YYYY/MM/DD")
+        excerpt
       }
+      excerpt
       body
     }
   }
