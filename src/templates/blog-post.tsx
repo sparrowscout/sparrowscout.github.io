@@ -33,8 +33,11 @@ export default function BlogPost({ data: { mdx }, children }: BlogPostProps) {
         </BackIconContainer>
 
         <Post>
-          <h1>{frontmatter.title}</h1>
-          <p>{frontmatter.date}</p>
+          <PostHeader>
+            <h1>{frontmatter.title}</h1>
+            <p>{frontmatter.date}</p>
+          </PostHeader>
+
           <ArticleContainer>
             <Divider />
             <article>{children}</article>
@@ -64,6 +67,8 @@ const Post = styled.div`
   padding: 20px;
   background-color: #fff;
   filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.25));
+  line-height: 1.5;
+  box-sizing: border-box;
 `;
 
 const ArticleContainer = styled.div`
@@ -89,4 +94,10 @@ const BackIconContainer = styled.div`
     width: 100%;
     height: 100%;
   }
+`;
+
+const PostHeader = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 `;

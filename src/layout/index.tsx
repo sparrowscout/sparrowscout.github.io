@@ -15,7 +15,7 @@ export default function Layout({ children }: { children: ReactNode }) {
 
 const Container = styled.div`
   width: 100dvw;
-  height: 100dvh;
+  height: 100%;
   padding: 0px 32px;
   background: repeating-linear-gradient(to bottom, #f8f8f8, #f8f8f8 40px, #e0e0e0 42px);
 `;
