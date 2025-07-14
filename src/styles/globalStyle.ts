@@ -6,7 +6,7 @@ const GlobalStyle = createGlobalStyle`
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    
+    color:rgb(31, 31, 31);
   }
 
   html, body {
@@ -18,6 +18,8 @@ const GlobalStyle = createGlobalStyle`
     text-decoration: none;
     color: inherit;
   }
+
+  
 `;
 
 export default GlobalStyle;
