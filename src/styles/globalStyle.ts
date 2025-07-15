@@ -19,6 +19,23 @@ const GlobalStyle = createGlobalStyle`
     color: inherit;
   }
 
+  table {
+  border-collapse: collapse;
+  width: 100%;
+  table-layout: fixed;
+  overflow-wrap: break-word;
+  word-break: keep-all;
+  }
+
+  th, td {
+    border: 1px solid #ccc;
+    padding: 8px;
+  }
+
+  th {
+    background-color: #f2f2f2;
+  }
+
   // note 코드블록 스타일링 
   @media screen and (min-width: 360px) {
   code {
