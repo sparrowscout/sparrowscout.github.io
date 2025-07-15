@@ -4,6 +4,7 @@ import Layout from '../layout';
 import styled from 'styled-components';
 import LeftArrow from '../assets/icons/left-arrow.svg';
 import { navigate } from 'gatsby';
+import { MDXProvider } from '@mdx-js/react';
 
 interface BlogPostProps {
   data: {
@@ -19,6 +20,8 @@ interface BlogPostProps {
   };
   children: React.ReactNode;
 }
+
+const components = {};
 
 export default function BlogPost({ data: { mdx }, children }: BlogPostProps) {
   const { frontmatter, body } = mdx;
@@ -42,7 +45,7 @@ export default function BlogPost({ data: { mdx }, children }: BlogPostProps) {
 
           <ArticleContainer>
             <Divider />
-            <article>{children}</article>
+            <MDXProvider components={components}>{children}</MDXProvider>
           </ArticleContainer>
         </Post>
       </DocumentContainer>

@@ -19,7 +19,14 @@ const GlobalStyle = createGlobalStyle`
     color: inherit;
   }
 
+  // note 코드블록 스타일링 
+  @media screen and (min-width: 360px) {
+  code {
+    font-size: 0.9rem;
+  }
+}
   
+
 `;
 
 export default GlobalStyle;

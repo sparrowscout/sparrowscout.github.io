@@ -21,7 +21,6 @@ const config: GatsbyConfig = {
     'gatsby-plugin-styled-components',
     'gatsby-plugin-image',
     'gatsby-plugin-sitemap',
-    'gatsby-plugin-mdx',
     'gatsby-plugin-sharp',
     'gatsby-transformer-sharp',
 
@@ -53,6 +52,24 @@ const config: GatsbyConfig = {
       options: {
         name: `templates`,
         path: `${__dirname}/src/templates`,
+      },
+    },
+    {
+      resolve: 'gatsby-plugin-mdx',
+      options: {
+        extensions: ['.mdx', '.md'],
+        gatsbyRemarkPlugins: [
+          {
+            resolve: `gatsby-remark-prismjs`,
+            options: {
+              classPrefix: 'language-',
+              inlineCodeMarker: null,
+              aliases: {},
+              showLineNumbers: true,
+              noInlineHighlight: false,
+            },
+          },
+        ],
       },
     },
   ],
