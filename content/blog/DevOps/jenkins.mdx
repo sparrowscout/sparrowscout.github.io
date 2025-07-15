@@ -1,5 +1,5 @@
 ---
-title: 'Jenkins'
+title: 'Jenkins로 배포 자동화 설정하기 (npm package)'
 date: '2023-11-07'
 ---
 
@@ -13,7 +13,7 @@ date: '2023-11-07'
 
 <br />
 
-![젠킨스를 이용한 배포 단계](<./img/jenkins(2).png>)
+![젠킨스를 이용한 배포 단계](</img/jenkins(2).png>)
 
 젠킨스를 이용한 배포 단계를 크게보면 이렇습니다.
 
@@ -29,7 +29,7 @@ date: '2023-11-07'
 
 ✏️ 이벤트가 흘러가는 흐름을 따라 연결해줍니다.
 
-![무엇과 무엇을 연결해야하는지](<./img/jenkins(3).png>)
+![무엇과 무엇을 연결해야하는지](</img/jenkins(3).png>)
 
 <br />
 
@@ -186,9 +186,7 @@ pipeline {
 - Stage View <br/>
   파이프라인에서 설정한 Stage 별 경과 시간과 실행한 step을 간결하게 확인할 수 있습니다. Stage 'for the fix branch'에서는 브랜치 명이 fix로 시작할 때만 step을 실행하도록 파이프라인을 작성했기 때문에 현재 브랜치인 PR-1에서는 건너뛴 모습입니다.
 
-  ![stage별 진행](<./img/jenkins(4).png>)
+  ![stage별 진행](</img/jenkins(4).png>)
 
 - Scan Oragnization Folder Log (위의 UI에서 소비 시간을 클릭하면 log를 볼 수 있습니다) <br/>
   처음에 연결하는 단계에서 잘못되거나, 스크립트가 잘못된 경우 로그를 확인하면서 따라가면 디버깅할 수 있습니다.
-
-  ![scan log](https://velog.velcdn.com/images/sparrowscout/post/6cb84399-e293-4ca5-8a47-442cc2ef7a1a/image.png)
