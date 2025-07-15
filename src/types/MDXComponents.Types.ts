@@ -1,3 +1,3 @@
-export type PostChildren = {
-  children: React.ReactNode;
+export type PostComponentsProps = {
+  children?: React.ReactNode;
 };
