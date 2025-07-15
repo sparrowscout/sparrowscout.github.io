@@ -5,6 +5,11 @@ import styled from 'styled-components';
 import LeftArrow from '../assets/icons/left-arrow.svg';
 import { navigate } from 'gatsby';
 import { MDXProvider } from '@mdx-js/react';
+import {
+  AnchorComponent,
+  BlockQuoteComponent,
+  OrderedListComponent,
+} from '../components/design-system';
 
 interface BlogPostProps {
   data: {
@@ -21,13 +26,17 @@ interface BlogPostProps {
   children: React.ReactNode;
 }
 
-const components = {};
+const components = {
+  blockquote: BlockQuoteComponent,
+  ol: OrderedListComponent,
+  a: AnchorComponent,
+};
 
 export default function BlogPost({ data: { mdx }, children }: BlogPostProps) {
-  const { frontmatter, body } = mdx;
+  const { frontmatter } = mdx;
 
   const onClickBack = () => {
-    navigate(-1);
+    navigate('/');
   };
 
   return (
@@ -42,9 +51,8 @@ export default function BlogPost({ data: { mdx }, children }: BlogPostProps) {
             <h1>{frontmatter.title}</h1>
             <p>{frontmatter.date}</p>
           </PostHeader>
-
+          <PostDivider />
           <ArticleContainer>
-            <Divider />
             <MDXProvider components={components}>{children}</MDXProvider>
           </ArticleContainer>
         </Post>
@@ -68,6 +76,7 @@ export const query = graphql`
 
 const DocumentContainer = styled.section`
   padding-top: 16px;
+  padding-bottom: 100px;
 `;
 
 const Post = styled.div`
@@ -80,12 +89,6 @@ const Post = styled.div`
 
 const ArticleContainer = styled.div`
   margin-top: 20px;
-`;
-
-const Divider = styled.hr`
-  border: none;
-  border-top: 1px solid #ccc;
-  margin: 20px 0;
 `;
 
 const BackIconContainer = styled.div`
@@ -106,5 +109,13 @@ const BackIconContainer = styled.div`
 const PostHeader = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 8px;
+
+  & > p {
+    margin: 0;
+    color: #5e5e5e;
+  }
+`;
+
+const PostDivider = styled.hr`
+  margin-top: 1rem;
 `;
