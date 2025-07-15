@@ -73,6 +73,7 @@ export default function CardStack({ data }: { data: DataProps }) {
           </>
         );
       })}
+      <ClosingBody />
     </Container>
   );
 }
@@ -97,6 +98,7 @@ export const query = graphql`
 `;
 const Container = styled.div`
   padding-top: 300px;
+  padding-bottom: 200px;
 `;
 
 const Card = styled(motion.div)`
@@ -171,4 +173,8 @@ const NameSticker = styled.div`
   white-space: nowrap;
   text-overflow: ellipsis;
   word-break: break-all;
+`;
+
+const ClosingBody = styled(CategoryBody)`
+  margin-top: -160px;
 `;
