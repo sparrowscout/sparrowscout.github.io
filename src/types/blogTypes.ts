@@ -3,7 +3,9 @@ export type BlogPost = {
     title: string;
     date: string;
     description?: string;
+    excerpt?: string;
   };
+  excerpt?: string;
   fields: {
     slug: string;
     category: string;
