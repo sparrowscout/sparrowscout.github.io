@@ -80,6 +80,8 @@ export const query = graphql`
 const Container = styled.div`
   padding-top: 300px;
   padding-bottom: 200px;
+  max-width: 1000px;
+  margin: auto;
 `;
 
 const CategoryCard = styled.div`
