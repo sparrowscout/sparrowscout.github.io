@@ -13,35 +13,13 @@ interface CardProps {
 
 export default function Card({ post, idx }: CardProps) {
   const [rotation] = React.useState(getRandomNumber2(3, -2));
-  const [isHover, setIsHover] = React.useState<boolean>(false);
-
-  const onCardHover = (e: React.MouseEvent<HTMLDivElement>, idx: number) => {
-    const element = e.currentTarget;
-    element.style.transform = `translateY(${idx - 100}px)`;
-    element.style.rotate = '0deg';
-    setIsHover(true);
-  };
-
-  const onCardLeave = (e: React.MouseEvent<HTMLDivElement>) => {
-    const element = e.currentTarget;
-    element.style.transform = `translateY(0px)`;
-    element.style.rotate = `${rotation}deg`;
-    setIsHover(false);
-  };
 
   return (
     <Link to={`/blog/${post.fields.slug}`}>
-      <CardContainer
-        className="stack-card"
-        key={idx}
-        data-index={idx}
-        onMouseEnter={(e) => onCardHover(e, idx)}
-        onMouseLeave={(e) => onCardLeave(e)}
-        $rotation={rotation}
-      >
-        <CardContent>
+      <CardContainer>
+        <CardContent className="stack-card" key={idx} data-index={idx} $rotation={rotation}>
           <DateTag>{formatSmartDate(post.frontmatter.date)}</DateTag>
-          <CardLabels title={post.frontmatter.title} isHover={isHover} />
+          <CardLabels title={post.frontmatter.title} />
           {post.frontmatter.excerpt ?? post.excerpt}
         </CardContent>
       </CardContainer>
@@ -49,13 +27,10 @@ export default function Card({ post, idx }: CardProps) {
   );
 }
 
-const CardContainer = styled.div<{ $rotation: number }>`
+const CardContainer = styled.div`
   position: relative;
   margin-top: -170px;
   cursor: pointer;
-  will-change: transform;
-  transition: transform 0.1s ease;
-  rotate: ${(props) => props.$rotation}deg;
 `;
 
 const DateTag = styled.div`
@@ -72,7 +47,7 @@ const DateTag = styled.div`
   background-color: #ffffff;
 `;
 
-const CardContent = styled.div`
+const CardContent = styled.div<{ $rotation: number }>`
   position: relative;
   background: #fff;
   height: 200px;
@@ -80,4 +55,14 @@ const CardContent = styled.div`
   position: relative;
   padding: 60px 20px;
   color: #5d5d5d;
+
+  will-change: transform;
+  transition: transform 0.3s ease, rotate 0.3s ease;
+  rotate: ${(props) => props.$rotation}deg;
+  transform: translateY(0);
+
+  &:hover {
+    transform: translateY(-100px);
+    rotate: 0deg;
+  }
 `;
