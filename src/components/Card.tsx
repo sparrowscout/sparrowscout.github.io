@@ -51,7 +51,7 @@ const CardContent = styled.div<{ $rotation: number }>`
   position: relative;
   background: #fff;
   height: 200px;
-  filter: drop-shadow(0px 0px 4px rgba(0, 0, 0, 0.25));
+  filter: drop-shadow(0px 0px 2px rgba(0, 0, 0, 0.25));
   position: relative;
   padding: 60px 20px;
   color: #5d5d5d;

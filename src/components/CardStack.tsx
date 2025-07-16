@@ -39,7 +39,7 @@ export default function CardStack({ data }: { data: DataProps }) {
                       width: '100%',
                       height: '100%',
                       pointerEvents: 'none', // 클릭 이벤트 막음
-                      filter: 'drop-shadow(2px -2px 2px rgba(0, 0, 0, 0.15))',
+                      filter: 'drop-shadow(0px 0px 2px rgba(0, 0, 0, 0.2))',
                     }}
                   >
                     <FolderLabel width="100%" height="100%" preserveAspectRatio="none" />
@@ -95,7 +95,7 @@ const CategoryBody = styled.div`
   height: 200px;
   border-radius: 12px;
   position: relative;
-  filter: drop-shadow(0px 0px 4px rgba(0, 0, 0, 0.25));
+  /* filter: drop-shadow(0px 0px 4px rgba(0, 0, 0, 0.25)); */
 `;
 
 const NameSticker = styled.div`
@@ -126,4 +126,5 @@ const NameSticker = styled.div`
 
 const ClosingBody = styled(CategoryBody)`
   margin-top: -160px;
+  background: linear-gradient(#dec0a4 0%, #dec0a4 6%, #edd4bc 100%);
 `;
