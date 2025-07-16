@@ -1,12 +1,9 @@
 import * as React from 'react';
-import { graphql, Link } from 'gatsby';
-import { motion } from 'framer-motion';
+import { graphql } from 'gatsby';
 import { DataProps } from '../types/blogTypes';
 import styled from 'styled-components';
 import FolderLabel from '../assets/icons/folder-label.svg';
-import { getRandomNumber2 } from '../utils/css-utils';
-import { formatSmartDate } from '../utils/formatDate';
-import CardLabels from './CardLabels';
+import Card from './Card';
 
 export default function CardStack({ data }: { data: DataProps }) {
   const sortedPosts = [...data.allMdx.nodes].sort((a, b) =>
@@ -53,23 +50,7 @@ export default function CardStack({ data }: { data: DataProps }) {
                 <CategoryBody />
               </CategoryCard>
             ) : null}
-            <Link to={`/blog/${post.fields.slug}`}>
-              <Card
-                className="stack-card"
-                key={idx}
-                initial={{ rotate: getRandomNumber2(3, -3) }}
-                whileHover={{ y: idx - 100 }}
-                transition={{ type: 'spring', stiffness: 200, mass: 0.5 }}
-                style={{ cursor: 'pointer' }}
-              >
-                <CardContent>
-                  <DateTag>{formatSmartDate(post.frontmatter.date)}</DateTag>
-
-                  <CardLabels title={post.frontmatter.title} />
-                  {post.frontmatter.excerpt ?? post.excerpt}
-                </CardContent>
-              </Card>
-            </Link>
+            <Card post={post} idx={idx} />
           </>
         );
       })}
@@ -101,43 +82,11 @@ const Container = styled.div`
   padding-bottom: 200px;
 `;
 
-const Card = styled(motion.div)`
-  position: relative;
-  margin-top: -170px;
-  cursor: pointer;
-`;
-
-const DateTag = styled.div`
-  position: absolute;
-
-  right: 10px;
-  top: -16px;
-  rotate: 0deg;
-  display: flex;
-  width: max-content;
-  padding: 8px;
-  border-radius: 16px;
-  font-size: 0.75rem;
-
-  justify-content: center;
-  background-color: #ffffff;
-`;
-
 const CategoryCard = styled.div`
   position: relative;
   pointer-events: none;
   cursor: default;
   margin-top: -160px;
-`;
-
-const CardContent = styled.div`
-  position: relative;
-  background: #fff;
-  height: 200px;
-  filter: drop-shadow(0px 0px 4px rgba(0, 0, 0, 0.25));
-  position: relative;
-  padding: 60px 20px;
-  color: #5d5d5d;
 `;
 
 const CategoryBody = styled.div`
