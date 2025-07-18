@@ -75,14 +75,25 @@ export const query = graphql`
 `;
 
 const DocumentContainer = styled.section`
-  padding-top: 16px;
+  padding: 16px 8px;
   padding-bottom: 100px;
+
+  -webkit-user-select: text;
+  -moz-user-select: text;
+  -ms-user-select: text;
+  user-select: text;
+
+  &::selection {
+    background-color: #181818;
+    color: #fff;
+  }
 `;
 
 const Post = styled.div`
   padding: 20px;
+  border: 1px solid black;
   background-color: #fff;
-  filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.25));
+  /* filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.25)); */
   line-height: 1.5;
   box-sizing: border-box;
 `;

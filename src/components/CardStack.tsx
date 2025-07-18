@@ -89,10 +89,10 @@ export default function CardStack({ data }: CardStackProps) {
 
         return (
           <>
-            {categoryChanged ? (
+            {/* {categoryChanged ? (
               // todo 포스트 카드가 위로 올라오면 오히려 현재 폴더 이름이 안보이는데 보여주는 방식을 수정해야할듯
               <CategoryFolder categoryName={post.fields.category} translateY={folderOffest} />
-            ) : null}
+            ) : null} */}
             <Card post={post} idx={idx} translateY={offset} isFocus={isFocus} />
           </>
         );
@@ -124,9 +124,8 @@ export const query = graphql`
 `;
 
 const Container = styled.div`
-  padding-top: 300px;
-  padding-bottom: 200px;
-  max-width: 1000px;
+  padding: 300px 16px 200px 16px;
+  max-width: 90%;
   margin: auto;
   touch-action: none;
   height: 100%;
@@ -134,6 +133,7 @@ const Container = styled.div`
   @media screen and (max-width: 760px) {
     padding: 0px 8px;
     overflow: unset;
+    max-width: 100%;
     position: relative;
     padding-top: 100px;
   }

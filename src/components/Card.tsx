@@ -37,7 +37,7 @@ export default function Card({ post, idx, translateY, isFocus }: CardProps) {
 
 const CardContainer = styled.div`
   position: relative;
-  margin-top: -170px;
+  margin-top: -150px;
   cursor: pointer;
 
   @media screen and (max-width: 760px) {
@@ -48,20 +48,21 @@ const CardContainer = styled.div`
 const DateTag = styled.div`
   position: absolute;
   right: 10px;
-  top: -16px;
+  top: -8px;
   rotate: 0deg;
   display: flex;
   width: max-content;
   padding: 8px;
-  border-radius: 16px;
   font-size: 0.75rem;
   justify-content: center;
-  background-color: #ffffff;
+  background-color: #000;
+  color: #fff;
 `;
 
 const CardContent = styled.div<{ $rotation: number; $translateY: number }>`
   position: relative;
   background: #fff;
+  border: 1px solid black;
   height: 200px;
   /* filter: drop-shadow(0px 0px 2px rgba(0, 0, 0, 0.25)); */
   position: relative;
