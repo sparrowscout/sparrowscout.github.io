@@ -14,7 +14,6 @@ export const createPages: GatsbyNode['createPages'] = async ({ actions, graphql 
           frontmatter {
             title
             date
-            excerpt
           }
           excerpt(pruneLength: 140)
           fields {

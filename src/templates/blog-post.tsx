@@ -18,7 +18,6 @@ interface BlogPostProps {
       frontmatter: {
         title: string;
         date: string;
-        excerpt?: string;
       };
       excerpt?: string;
     };
@@ -66,7 +65,6 @@ export const query = graphql`
       frontmatter {
         title
         date(formatString: "YYYY/MM/DD")
-        excerpt
       }
       excerpt
       body
