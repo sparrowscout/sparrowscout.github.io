@@ -55,11 +55,12 @@ const CardTag = styled.div<{
   padding: 16px;
   background-color: ${(props) => props.$bgColor};
   rotate: ${(props) => props.$rotation}deg;
+  border: 1px solid black;
 
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.4);
+  /* box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.4); */
   font-weight: 500;
 
   @media screen and (min-width: 761px) {
@@ -71,6 +72,7 @@ const CardTag = styled.div<{
 
   @media screen and (max-width: 760px) {
     padding: 8px;
+    height: 33px;
 
     ${({ $isFocusing }) =>
       $isFocusing &&

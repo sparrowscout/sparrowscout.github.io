@@ -70,7 +70,7 @@ const LabelImageWrapper = styled.div`
   width: 100%;
   height: 100%;
   pointer-events: none;
-  filter: drop-shadow(0px 0px 2px rgba(0, 0, 0, 0.2));
+  /* filter: drop-shadow(0px 0px 2px rgba(0, 0, 0, 0.2)); */
 `;
 
 const NameSticker = styled.div`
