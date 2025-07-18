@@ -5,16 +5,28 @@ import { getRandomNumber2 } from '../utils/css-utils';
 import styled from 'styled-components';
 import CardLabels from './CardLabels';
 import { formatSmartDate } from '../utils/formatDate';
+import CategoryLabel from './CategoryLabel';
 
 interface CardProps {
   post: BlogPost;
   idx: number;
   translateY: number;
   isFocus: boolean;
+  categoryColor?: string;
 }
 
-export default function Card({ post, idx, translateY, isFocus }: CardProps) {
+export default function Card({ post, idx, translateY, isFocus, categoryColor }: CardProps) {
   const [rotation] = React.useState(getRandomNumber2(3, -2));
+  const [isFocusing, setIsFocusig] = React.useState<boolean>(false);
+
+  const onCardHover = () => {
+    if (window.innerWidth < 761) return;
+    setIsFocusig(true);
+  };
+
+  const onCardLeave = () => {
+    setIsFocusig(false);
+  };
 
   return (
     <CardContainer>
@@ -25,9 +37,21 @@ export default function Card({ post, idx, translateY, isFocus }: CardProps) {
           data-index={idx}
           $rotation={isFocus ? 0 : rotation}
           $translateY={isFocus ? translateY - 100 : translateY}
+          onMouseEnter={onCardHover}
+          onMouseLeave={onCardLeave}
         >
           <DateTag>{formatSmartDate(post.frontmatter.date)}</DateTag>
-          <CardLabels title={post.frontmatter.title} isFocusing={isFocus} />
+          <CardLabels
+            title={post.frontmatter.title}
+            isFocusing={isFocus}
+            categoryColor={categoryColor || 'transparent'}
+          />
+          {isFocusing || isFocus ? (
+            <CategoryLabel
+              categoryName={post.fields.category}
+              categoryColor={categoryColor || 'transparent'}
+            />
+          ) : null}
           {post.excerpt}
         </CardContent>
       </Link>

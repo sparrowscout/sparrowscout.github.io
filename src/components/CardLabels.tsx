@@ -5,30 +5,24 @@ import { getRandomNumber } from '../utils/css-utils';
 interface LabelsProps {
   title: string;
   isFocusing: boolean;
+  categoryColor: string;
 }
 
-// todo 이거 추후에 node 단으로 옮겨서 포스트 하나하나 당 컬러 지정을 해놓는게 좋을 것 같음
-const colorArray = [
-  '#fff8b9', // 옐로우
-  '#d3eaf2',
-  '#dcf0d7',
-  '#cbefe9',
-  '#e3d8f0',
-  '#fee4e9', // 로즈 핑크
-  '#ffddbb',
-];
-
-export default function CardLabels({ title, isFocusing }: LabelsProps) {
-  const [labelConfig] = React.useState<{ yPosition: number; bgColor: string; rotation: number }>({
+export default function CardLabels({ title, isFocusing, categoryColor }: LabelsProps) {
+  const [labelConfig] = React.useState<{
+    yPosition: number;
+    categoryColor: string;
+    rotation: number;
+  }>({
     yPosition: getRandomNumber(20, 40),
     rotation: getRandomNumber(5, -5),
-    bgColor: colorArray[getRandomNumber(colorArray.length)],
+    categoryColor,
   });
 
   return (
     <>
       <CardTag
-        $bgColor={labelConfig.bgColor}
+        $categoryColor={labelConfig.categoryColor}
         $yPosition={labelConfig.yPosition}
         $rotation={labelConfig.rotation}
         $isFocusing={isFocusing}
@@ -40,7 +34,7 @@ export default function CardLabels({ title, isFocusing }: LabelsProps) {
 }
 
 const CardTag = styled.div<{
-  $bgColor: string;
+  $categoryColor: string;
   $yPosition: number;
   $rotation: number;
   $isFocusing: boolean;
@@ -53,7 +47,7 @@ const CardTag = styled.div<{
   min-width: 100px;
   text-align: center;
   padding: 16px;
-  background-color: ${(props) => props.$bgColor};
+  background-color: ${(props) => props.$categoryColor};
   rotate: ${(props) => props.$rotation}deg;
   border: 1px solid black;
 
