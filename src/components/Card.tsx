@@ -28,7 +28,7 @@ export default function Card({ post, idx, translateY, isFocus }: CardProps) {
         >
           <DateTag>{formatSmartDate(post.frontmatter.date)}</DateTag>
           <CardLabels title={post.frontmatter.title} isFocusing={isFocus} />
-          {post.frontmatter.excerpt ?? post.excerpt}
+          {post.excerpt}
         </CardContent>
       </Link>
     </CardContainer>

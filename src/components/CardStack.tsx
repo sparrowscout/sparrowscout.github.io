@@ -111,7 +111,6 @@ export const query = graphql`
         frontmatter {
           title
           date(formatString: "YYYY-MM-DD")
-          excerpt
         }
         excerpt(pruneLength: 140)
         fields {
