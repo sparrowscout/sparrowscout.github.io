@@ -108,6 +108,7 @@ export default function CardStack({ data }: CardStackProps) {
             translateY={offset}
             isFocus={isFocus}
             categoryColor={categoryList.get(category)}
+            key={post.frontmatter.title}
           />
         );
       })}
