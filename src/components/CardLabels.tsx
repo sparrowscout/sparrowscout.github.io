@@ -14,7 +14,7 @@ export default function CardLabels({ title, isFocusing, categoryColor }: LabelsP
     categoryColor: string;
     rotation: number;
   }>({
-    yPosition: getRandomNumber(20, 40),
+    yPosition: getRandomNumber(-30, 50),
     rotation: getRandomNumber(5, -5),
     categoryColor,
   });
