@@ -2,59 +2,104 @@ import * as React from 'react';
 import { graphql } from 'gatsby';
 import { DataProps } from '../types/blogTypes';
 import styled from 'styled-components';
-import FolderLabel from '../assets/icons/folder-label.svg';
 import Card from './Card';
+import CategoryFolder, { CategoryBody } from './CategoryFolder';
 
-export default function CardStack({ data }: { data: DataProps }) {
-  const sortedPosts = [...data.allMdx.nodes].sort((a, b) =>
-    a.fields.category.localeCompare(b.fields.category)
-  );
+interface CardStackProps {
+  scrollContainer: React.MutableRefObject<null | HTMLDivElement>;
+  data: DataProps;
+}
+
+export default function CardStack({ data }: CardStackProps) {
+  const [currentIdx, setCurrentIdx] = React.useState(0);
+  const [touchList, setTouchList] = React.useState<number[]>([]);
+  const [postsGap, setPostsGap] = React.useState<number>();
+  const containerRef = React.useRef<null | HTMLDivElement>(null);
+
+  const sortedPosts = [...data.allMdx.nodes].sort((a, b) => {
+    return a.fields.category.localeCompare(b.fields.category);
+  });
+  const total = sortedPosts.length;
+
+  const getPostsGap = () => {
+    if (!containerRef.current) return;
+
+    const { clientHeight } = containerRef.current;
+    setPostsGap((clientHeight - 100) / total);
+  };
+
+  const onContainerTouchStart = (event: React.TouchEvent) => {
+    const { touches } = event;
+    setTouchList([touches[0].clientY]);
+  };
+
+  React.useEffect(() => {
+    getPostsGap();
+  }, []);
+
+  const onContainerTouchMove = (event: React.TouchEvent) => {
+    const { touches } = event;
+    const currentY = touches[0].clientY;
+    setTouchList((prev) => [...prev, currentY]);
+
+    const firstThumb = touchList[0];
+    const distance = currentY - firstThumb;
+    const dragThreshold = 5;
+
+    if (Math.abs(distance) > dragThreshold) {
+      if (distance < 0) {
+        setCurrentIdx((prev) => Math.min(prev + 1, total - 1));
+      } else if (distance > 0) {
+        setCurrentIdx((prev) => Math.max(prev - 1, 0));
+      }
+      setTouchList([]);
+    }
+  };
+
+  const onContainerTouchEnd = () => {
+    setTouchList([]);
+  };
+
+  const onContainerWheel = (e: React.WheelEvent) => {
+    if (e.deltaY > 0) {
+      setCurrentIdx((prev) => Math.min(prev + 1, total - 1));
+    } else {
+      setCurrentIdx((prev) => Math.max(prev - 1, 0));
+    }
+  };
 
   let lastCategory = '';
 
   return (
-    <Container>
+    <Container
+      onWheel={onContainerWheel}
+      onTouchStart={onContainerTouchStart}
+      onTouchMove={onContainerTouchMove}
+      onTouchEnd={onContainerTouchEnd}
+      ref={containerRef}
+    >
       {sortedPosts.map((post, idx) => {
         const categoryChanged = post.fields.category !== lastCategory;
-
-        console.log(categoryChanged);
         lastCategory = post.fields.category;
+
+        const offset = idx * (postsGap ?? 0); // 카드 간 간격
+        console.log(offset);
+        const folderOffest = offset - 10;
+        const isFocus = idx === currentIdx;
+
         return (
           <>
             {categoryChanged ? (
-              <CategoryCard>
-                <div
-                  style={{
-                    position: 'absolute',
-                    display: 'inline-block',
-                    padding: '4px 30px', // 텍스트 padding 조절
-                    top: '-43px', // 텍스트 위치 조정
-                  }}
-                >
-                  <div
-                    style={{
-                      position: 'absolute',
-                      inset: 0,
-                      zIndex: 0,
-                      width: '100%',
-                      height: '100%',
-                      pointerEvents: 'none', // 클릭 이벤트 막음
-                      filter: 'drop-shadow(2px -2px 2px rgba(0, 0, 0, 0.15))',
-                    }}
-                  >
-                    <FolderLabel width="100%" height="100%" preserveAspectRatio="none" />
-                  </div>
-                  <NameSticker>{post.fields.category}</NameSticker>
-                </div>
-
-                <CategoryBody />
-              </CategoryCard>
+              // todo 포스트 카드가 위로 올라오면 오히려 현재 폴더 이름이 안보이는데 보여주는 방식을 수정해야할듯
+              <CategoryFolder categoryName={post.fields.category} translateY={folderOffest} />
             ) : null}
-            <Card post={post} idx={idx} />
+            <Card post={post} idx={idx} translateY={offset} isFocus={isFocus} />
           </>
         );
       })}
-      <ClosingBody />
+      {/* <ClosingFolder>
+        <ClosingBody />
+      </ClosingFolder> */}
     </Container>
   );
 }
@@ -77,53 +122,37 @@ export const query = graphql`
     }
   }
 `;
+
 const Container = styled.div`
   padding-top: 300px;
   padding-bottom: 200px;
+  max-width: 1000px;
+  margin: auto;
+  touch-action: none;
+  height: 100%;
+
+  @media screen and (max-width: 760px) {
+    padding: 0px 8px;
+    overflow: unset;
+    position: relative;
+    padding-top: 100px;
+  }
 `;
 
-const CategoryCard = styled.div`
+const ClosingFolder = styled.div`
   position: relative;
-  pointer-events: none;
-  cursor: default;
-  margin-top: -160px;
-`;
-
-const CategoryBody = styled.div`
-  background-color: #dec0a4;
-  /* background: linear-gradient(#dec0a4 0%, #dec0a4 6%, #edd4bc 100%); */
-  height: 200px;
-  border-radius: 12px;
-  position: relative;
-  filter: drop-shadow(0px 0px 4px rgba(0, 0, 0, 0.25));
-`;
-
-const NameSticker = styled.div`
-  background-color: #fffefb;
-  min-width: 80px;
-  max-width: 250px;
-  position: relative;
-
-  align-items: center;
-  font-weight: 600;
-  border-radius: 8px;
-  outline: 2px solid #5d5d5d;
-  padding: 8px;
-  text-align: center;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 0px 24px;
-  outline-offset: -5px;
-
-  position: 'relative';
-
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  word-break: break-all;
+  width: 100%;
+  height: 100%;
 `;
 
 const ClosingBody = styled(CategoryBody)`
+  position: relative;
   margin-top: -160px;
+  background: linear-gradient(#dec0a4 0%, #dec0a4 6%, #edd4bc 100%);
+
+  @media screen and (max-width: 760px) {
+    position: absolute;
+    width: 100%;
+    bottom: -120px;
+  }
 `;
