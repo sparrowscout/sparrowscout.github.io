@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { graphql } from 'gatsby';
-import { DataProps } from '../types/blogTypes';
+import { BlogPost, DataProps } from '../types/blogTypes';
 import styled from 'styled-components';
 import Card from './Card';
-import CategoryFolder, { CategoryBody } from './CategoryFolder';
+import { colorArray } from '../enum/categoryColor';
 
 interface CardStackProps {
   scrollContainer: React.MutableRefObject<null | HTMLDivElement>;
@@ -15,17 +15,34 @@ export default function CardStack({ data }: CardStackProps) {
   const [touchList, setTouchList] = React.useState<number[]>([]);
   const [postsGap, setPostsGap] = React.useState<number>();
   const containerRef = React.useRef<null | HTMLDivElement>(null);
+  const categoryList = new Map<string, string>();
 
-  const sortedPosts = [...data.allMdx.nodes].sort((a, b) => {
-    return a.fields.category.localeCompare(b.fields.category);
+  const categoryMap = new Map<string, BlogPost[]>();
+
+  data.allMdx.nodes.forEach((node, index) => {
+    const category = node.fields.category || 'Uncategorized';
+    if (!categoryList.has(category)) {
+      categoryList.set(category, colorArray[index]);
+    }
+
+    if (!categoryMap.has(category)) {
+      categoryMap.set(category, []);
+    }
+
+    categoryMap.get(category)?.push(node);
   });
+
+  const sortedCategoryKeys = [...categoryMap.keys()].sort();
+
+  const sortedPosts = sortedCategoryKeys.flatMap((key) => categoryMap.get(key)!);
+
   const total = sortedPosts.length;
 
   const getPostsGap = () => {
     if (!containerRef.current) return;
 
     const { clientHeight } = containerRef.current;
-    setPostsGap((clientHeight - 100) / total);
+    setPostsGap((clientHeight - 140) / total);
   };
 
   const onContainerTouchStart = (event: React.TouchEvent) => {
@@ -61,6 +78,7 @@ export default function CardStack({ data }: CardStackProps) {
   };
 
   const onContainerWheel = (e: React.WheelEvent) => {
+    if (window.innerWidth > 760) return;
     if (e.deltaY > 0) {
       setCurrentIdx((prev) => Math.min(prev + 1, total - 1));
     } else {
@@ -68,7 +86,7 @@ export default function CardStack({ data }: CardStackProps) {
     }
   };
 
-  let lastCategory = '';
+  const isMobile = window.innerWidth < 761;
 
   return (
     <Container
@@ -79,27 +97,20 @@ export default function CardStack({ data }: CardStackProps) {
       ref={containerRef}
     >
       {sortedPosts.map((post, idx) => {
-        const categoryChanged = post.fields.category !== lastCategory;
-        lastCategory = post.fields.category;
-
         const offset = idx * (postsGap ?? 0); // 카드 간 간격
-        console.log(offset);
-        const folderOffest = offset - 10;
-        const isFocus = idx === currentIdx;
+        const isFocus = isMobile ? idx === currentIdx : false;
+        const category = post.fields.category || 'Uncategorized';
 
         return (
-          <>
-            {/* {categoryChanged ? (
-              // todo 포스트 카드가 위로 올라오면 오히려 현재 폴더 이름이 안보이는데 보여주는 방식을 수정해야할듯
-              <CategoryFolder categoryName={post.fields.category} translateY={folderOffest} />
-            ) : null} */}
-            <Card post={post} idx={idx} translateY={offset} isFocus={isFocus} />
-          </>
+          <Card
+            post={post}
+            idx={idx}
+            translateY={offset}
+            isFocus={isFocus}
+            categoryColor={categoryList.get(category)}
+          />
         );
       })}
-      {/* <ClosingFolder>
-        <ClosingBody />
-      </ClosingFolder> */}
     </Container>
   );
 }
@@ -123,7 +134,7 @@ export const query = graphql`
 `;
 
 const Container = styled.div`
-  padding: 300px 16px 200px 16px;
+  padding: 350px 16px 200px 16px;
   max-width: 90%;
   margin: auto;
   touch-action: none;
@@ -134,24 +145,6 @@ const Container = styled.div`
     overflow: unset;
     max-width: 100%;
     position: relative;
-    padding-top: 100px;
-  }
-`;
-
-const ClosingFolder = styled.div`
-  position: relative;
-  width: 100%;
-  height: 100%;
-`;
-
-const ClosingBody = styled(CategoryBody)`
-  position: relative;
-  margin-top: -160px;
-  background: linear-gradient(#dec0a4 0%, #dec0a4 6%, #edd4bc 100%);
-
-  @media screen and (max-width: 760px) {
-    position: absolute;
-    width: 100%;
-    bottom: -120px;
+    padding-top: 140px;
   }
 `;
