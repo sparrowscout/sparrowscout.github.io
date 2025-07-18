@@ -4,6 +4,7 @@ import { BlogPost, DataProps } from '../types/blogTypes';
 import styled from 'styled-components';
 import Card from './Card';
 import { colorArray } from '../enum/categoryColor';
+import { useMediaQuery } from 'react-responsive';
 
 interface CardStackProps {
   scrollContainer: React.MutableRefObject<null | HTMLDivElement>;
@@ -15,6 +16,7 @@ export default function CardStack({ data }: CardStackProps) {
   const [touchList, setTouchList] = React.useState<number[]>([]);
   const [postsGap, setPostsGap] = React.useState<number>();
   const containerRef = React.useRef<null | HTMLDivElement>(null);
+  const isTabletOrMobile = useMediaQuery({ query: '(max-width: 760px)' });
   const categoryList = new Map<string, string>();
 
   const categoryMap = new Map<string, BlogPost[]>();
@@ -86,8 +88,6 @@ export default function CardStack({ data }: CardStackProps) {
     }
   };
 
-  const isMobile = window.innerWidth < 761;
-
   return (
     <Container
       onWheel={onContainerWheel}
@@ -98,7 +98,7 @@ export default function CardStack({ data }: CardStackProps) {
     >
       {sortedPosts.map((post, idx) => {
         const offset = idx * (postsGap ?? 0); // 카드 간 간격
-        const isFocus = isMobile ? idx === currentIdx : false;
+        const isFocus = isTabletOrMobile ? idx === currentIdx : false;
         const category = post.fields.category || 'Uncategorized';
 
         return (
