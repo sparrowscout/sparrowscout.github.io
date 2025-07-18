@@ -1,17 +1,17 @@
 import * as React from 'react';
-import { graphql, Link, type HeadFC, type PageProps } from 'gatsby';
+import { graphql, type HeadFC, type PageProps } from 'gatsby';
 import { DataProps } from '../types/blogTypes';
 import CardStack from '../components/CardStack';
-import styled from 'styled-components';
 import Layout from '../layout';
+import styled from 'styled-components';
 
 const IndexPage = ({ data }: PageProps<DataProps>) => {
-  console.log(data);
+  const scrollContainer = React.useRef<null | HTMLDivElement>(null);
   return (
     <Layout>
-      <div>
-        <CardStack data={data} />
-      </div>
+      <Container ref={scrollContainer}>
+        <CardStack data={data} scrollContainer={scrollContainer} />
+      </Container>
     </Layout>
   );
 };
@@ -36,5 +36,17 @@ export const query = graphql`
         }
       }
     }
+  }
+`;
+
+const Container = styled.div`
+  width: 100%;
+  height: 100%;
+  overflow-y: scroll;
+  overflow-x: hidden;
+
+  @media screen and (max-width: 760px) {
+    padding: 20px 0px;
+    overflow-y: hidden;
   }
 `;

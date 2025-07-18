@@ -12,8 +12,14 @@ const GlobalStyle = createGlobalStyle`
   html, body {
     font-family: sans-serif;
     height: 100%;
+    font-size: 16px;
     overflow-wrap: break-word;
     word-break: keep-all;
+    -webkit-user-select:none;
+    -moz-user-select:none;
+    -ms-user-select:none;
+    user-select:none;
+
 
       /* Headings */
   --heading-formatting: var(--text-faint);
@@ -60,6 +66,11 @@ const GlobalStyle = createGlobalStyle`
   --h4-weight: 600;
   --h5-weight: 600;
   --h6-weight: 600;
+
+
+    @media screen and (max-width:760px) {
+      font-size: 0.875rem;
+    }
   }
 
   a {
@@ -144,12 +155,18 @@ const GlobalStyle = createGlobalStyle`
     }
   }
 
+
+  .no-hover *:hover {
+  pointer-events: none !important;
+  }
+
+
   // note 코드블록 스타일링 
   @media screen and (min-width: 360px) {
-  code {
-    font-size: 0.9rem;
-  }
-}
+    code {
+      font-size: 0.9rem;
+    }
+  }   
   
   
 
