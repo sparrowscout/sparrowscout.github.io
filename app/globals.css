@@ -167,10 +167,74 @@ img {
   overflow-clip-margin: content-box;
   overflow: clip;
 
-  @media screen and (min-width: 700px) {
+  @media screen and (min-width: 640px) {
     display: flex;
     margin: 0 auto;
   }
+
+  @media screen and (min-width: 768px) {
+    max-width: 640px;
+    margin: 0;
+  }
+}
+
+iframe {
+  width: 100%;
+
+  @media screen and (min-width: 640px) {
+    display: flex;
+    margin: 0 auto;
+  }
+
+  @media screen and (min-width: 768px) {
+    width: 640px;
+    margin: 0;
+  }
+}
+
+/* ==강조== 마크 스타일 */
+mark {
+  background-color: rgba(250, 235, 160, 0.55);
+  color: inherit;
+  padding: 0.05em 0.1em;
+  border-radius: 2px;
+}
+
+/* //텍스트// 주석 */
+.aside-text {
+  color: #ff7dff;
+  font-size: 0.85em;
+}
+
+/* 인라인 코드 (코드 블록 내부 제외) */
+:not(pre) > code {
+  background-color: rgba(135, 131, 120, 0.15);
+  border-radius: 4px;
+  padding: 0.15em 0.4em;
+  font-size: 85%;
+  font-family:
+    'Fira Code', 'Fira Mono', Menlo, Consolas, monospace;
+}
+
+/* Tailwind Preflight가 리셋한 리스트 스타일 복원 */
+article ul {
+  list-style-type: disc;
+  padding-left: 1.5em;
+  margin-block-start: 0.5em;
+  margin-block-end: 0.5em;
+}
+
+article ul ul {
+  list-style-type: circle;
+}
+
+article ul ul ul {
+  list-style-type: square;
+}
+
+article li {
+  margin-block-start: 0.25em;
+  margin-block-end: 0.25em;
 }
 
 .no-hover *:hover {

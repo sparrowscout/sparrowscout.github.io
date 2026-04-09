@@ -24,7 +24,14 @@ export default function BlogList({
 
   if (sortedPosts.length === 0) {
     return (
-      <Notice noticeType={NoticeText.FILTER_RESULT_EMPTY} />
+      <NoticeContainer
+        $isCategoryFiltering={isCategoryFiltering}
+        $paddingHeight={paddingValue}
+      >
+        <Notice
+          noticeType={NoticeText.FILTER_RESULT_EMPTY}
+        />
+      </NoticeContainer>
     )
   }
 
@@ -64,4 +71,18 @@ const BlogPostContainer = styled.div<{
       : 'calc(var(--spacing) * 32)'};
   max-width: 1280px;
   margin: auto;
+`
+
+const NoticeContainer = styled.div<{
+  $paddingHeight: number
+  $isCategoryFiltering: boolean
+}>`
+  height: 100%;
+  padding-top: ${({
+    $paddingHeight,
+    $isCategoryFiltering,
+  }) =>
+    $isCategoryFiltering
+      ? `calc(var(--spacing) * 2 + ${$paddingHeight}px)`
+      : 'calc(var(--spacing) * 32)'};
 `

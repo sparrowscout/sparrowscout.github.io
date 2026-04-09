@@ -30,6 +30,7 @@ export default function IconButton({
           width={100}
           height={100}
           style={{
+            maxWidth: '56px',
             position: 'absolute',
             objectFit: 'contain',
             padding: '8px',

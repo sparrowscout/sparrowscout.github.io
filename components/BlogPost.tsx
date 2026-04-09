@@ -28,8 +28,13 @@ export default function BlogPost({ post }: BlogPostProps) {
     >
       <div className="flex flex-col gap-2 border-[1px] border-black bg-white p-5 hover:[&_div]:!text-[#ff01ff] active:[&_div]:!text-[#ff01ff]">
         <div className="flex items-start justify-between">
-          <div className="text-lg">{post.title}</div>
+          <div className="text-lg font-bold">
+            {post.title}
+          </div>
           <Tag size="s">{formatSmartDate(post.date)}</Tag>
+        </div>
+        <div className="text-gray-500! pb-4 text-sm">
+          {post.excerpt}
         </div>
         <CategoryTag
           categoryName={post.category ?? ''}
