@@ -1,0 +1,9 @@
+{
+  "editor.snippetSuggestions": "top",
+  "[mdx]": {
+    "editor.snippetSuggestions": "top"
+  },
+  "[markdown]": {
+    "editor.snippetSuggestions": "top"
+  }
+}

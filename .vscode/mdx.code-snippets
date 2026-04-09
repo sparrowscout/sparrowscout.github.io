@@ -3,7 +3,7 @@
     "prefix": "newmdx",
     "body": [
       "---",
-      "title: \"$1\"",
+      "title: \"${1:${TM_FILENAME_BASE}}\"",
       "date: \"${CURRENT_YEAR}-${CURRENT_MONTH}-${CURRENT_DATE}\"",
       "excerpt: \"\"",
       "---",
@@ -12,5 +12,23 @@
       "",
     ],
     "description": "Create a new blog post with frontmatter and TLDR marker",
+  },
+  "Callout": {
+    "prefix": "callout",
+    "body": [
+      "> [!${1|note,tip,info,warning,danger,success,question,example,quote,bug,abstract,todo,important,caution,error,failure|}] ${2:제목}",
+      "> ${3:내용}",
+      "",
+    ],
+    "description": "Obsidian-style callout block",
+  },
+  "Callout Foldable": {
+    "prefix": "calloutf",
+    "body": [
+      "> [!${1|note,tip,info,warning,danger,success,question,example,quote,bug|}]${2|+,-|} ${3:제목}",
+      "> ${4:내용}",
+      "",
+    ],
+    "description": "Foldable callout block (+ open, - closed)",
   },
 }
