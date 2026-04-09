@@ -2,6 +2,8 @@ import { getAllPosts, getPostBySlug } from '@/lib/posts'
 import { compileMDX } from 'next-mdx-remote/rsc'
 import remarkGfm from 'remark-gfm'
 import { remarkMark } from 'remark-mark-highlight'
+import { remarkCallout } from '@/lib/remarkCallout'
+import { remarkAsideText } from '@/lib/remarkAsideText'
 import rehypePrism from 'rehype-prism-plus'
 import fs from 'node:fs/promises'
 import { mdxComponents } from '@/mdx-components'
@@ -32,7 +34,7 @@ export default async function PostPage({
     options: {
       parseFrontmatter: true,
       mdxOptions: {
-        remarkPlugins: [remarkGfm, remarkMark],
+        remarkPlugins: [remarkGfm, remarkMark, remarkCallout, remarkAsideText],
         rehypePlugins: [
           [
             rehypePrism,
@@ -53,6 +55,10 @@ export default async function PostPage({
             frontmatter?.title ?? meta.title ?? meta.slug,
           )}
         </h1>
+
+        <div className="text-gray-500! text-sm">
+          {meta.excerpt}
+        </div>
         <div className="text-end text-sm">
           {formatDate(meta.date, 'yyyy/MM/dd')}
         </div>
